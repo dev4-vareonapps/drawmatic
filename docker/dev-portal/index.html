@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drawmatic — Dev Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0f172a;
+        --surface: #1e293b;
+        --border: #334155;
+        --text: #f8fafc;
+        --muted: #94a3b8;
+        --primary: #3b82f6;
+        --primary-hover: #2563eb;
+        --accent: #22d3ee;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Inter', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        line-height: 1.5;
+      }
+
+      .bg-grid {
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+      }
+
+      .glow {
+        position: fixed;
+        top: -20%;
+        right: -10%;
+        width: 50vw;
+        height: 50vw;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .container {
+        position: relative;
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem 4rem;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .logo-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        font-size: 1rem;
+        margin-top: 0.5rem;
+      }
+
+      .badge {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--accent);
+        background: rgba(34, 211, 238, 0.1);
+        border: 1px solid rgba(34, 211, 238, 0.25);
+        border-radius: 9999px;
+      }
+
+      .cards {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1.25rem 1.5rem;
+        transition: border-color 0.2s, transform 0.2s;
+      }
+
+      .card:hover {
+        border-color: rgba(59, 130, 246, 0.5);
+        transform: translateY(-1px);
+      }
+
+      .card-primary {
+        border-color: rgba(59, 130, 246, 0.4);
+        background: linear-gradient(135deg, rgba(30, 41, 59, 1) 0%, rgba(30, 58, 138, 0.2) 100%);
+      }
+
+      .card h2 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+      }
+
+      .card p {
+        font-size: 0.875rem;
+        color: var(--muted);
+        margin-bottom: 1rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: background 0.2s;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-hover);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+
+      .btn-secondary:hover {
+        border-color: var(--muted);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .info {
+        margin-top: 2rem;
+        padding: 1rem 1.25rem;
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        font-size: 0.8125rem;
+        color: var(--muted);
+      }
+
+      .info strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .info code {
+        font-family: ui-monospace, monospace;
+        font-size: 0.75rem;
+        padding: 0.125rem 0.375rem;
+        background: var(--surface);
+        border-radius: 4px;
+        color: var(--accent);
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 2.5rem;
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="glow" aria-hidden="true"></div>
+
+    <div class="container">
+      <header>
+        <div class="logo">
+          <div class="logo-icon" aria-hidden="true">✎</div>
+          <div>
+            <h1>Drawmatic</h1>
+          </div>
+        </div>
+        <p class="subtitle">Local development portal — Docker Compose</p>
+        <span class="badge">Dev environment</span>
+      </header>
+
+      <div class="cards">
+        <article class="card card-primary">
+          <h2>Drawmatic application</h2>
+          <p>Sign in, create diagrams, and use the dashboard. This is your main app.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="http://localhost:3001" target="_blank" rel="noopener">
+              Open app →
+            </a>
+            <a class="btn btn-secondary" href="http://localhost:3001/register" target="_blank" rel="noopener">
+              Register
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Mongo Express</h2>
+          <p>Browse the <code>drawmatic</code> database, collections, and documents. No browser login popup in local Docker.</p>
+          <div class="actions">
+            <a class="btn btn-secondary" href="http://localhost:8082" target="_blank" rel="noopener">
+              Open database UI →
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <div class="info">
+        <p><strong>Ports</strong></p>
+        <p style="margin-top: 0.5rem">
+          App <code>:3001</code> · Dev portal <code>:8081</code> · Mongo Express <code>:8082</code> ·
+          MongoDB (internal) <code>mongodb:27017</code>
+        </p>
+        <p style="margin-top: 0.75rem">
+          <strong>First time?</strong> Open the app → Register → you become Super Admin of a new organization.
+        </p>
+      </div>
+
+      <footer>Drawmatic · Multi-tenant diagram SaaS</footer>
+    </div>
+  </body>
+</html>
