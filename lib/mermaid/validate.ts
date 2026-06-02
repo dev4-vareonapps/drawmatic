@@ -2,14 +2,19 @@ export async function validateMermaidSyntax(source: string): Promise<{
   valid: boolean;
   error?: string;
 }> {
-  if (!source.trim()) {
-    return { valid: true };
+  const trimmedSource = source.trim();
+  if (!trimmedSource) {
+    return { valid: false };
   }
 
   try {
     const mermaid = await import('mermaid');
-    mermaid.default.initialize({ startOnLoad: false, securityLevel: 'strict' });
-    await mermaid.default.parse(source);
+    mermaid.default.initialize({
+      startOnLoad: false,
+      securityLevel: 'strict',
+      suppressErrorRendering: true,
+    });
+    await mermaid.default.parse(trimmedSource);
     return { valid: true };
   } catch (error) {
     return {
